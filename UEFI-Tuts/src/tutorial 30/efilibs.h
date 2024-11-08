@@ -103,6 +103,20 @@ void InitializeFILESYSTEM()
 	
     if((SystemTable->BootServices->HandleProtocol(ImageHandle, &EFI_LOADED_IMAGE_PROTOCOL_GUID, (void**)&LoadedImage)) == EFI_SUCCESS)
 	{
+		UINT16 GOPINFO[12];
+		Print(L"Image Base: \r\n");
+		itoa(*(unsigned long int*)LoadedImage->ImageBase, GOPINFO, HEX);
+		Print(L"0x");
+    	Print(GOPINFO);
+		Print(L"\r\n");
+
+		Print(L"Image Base with ampersand: \r\n");
+		itoa(*(unsigned long int*)&LoadedImage->ImageBase, GOPINFO, HEX);
+		Print(L"0x");
+    	Print(GOPINFO);
+		Print(L"\r\n");
+
+
 		if((SystemTable->BootServices->HandleProtocol(LoadedImage->DeviceHandle, &EFI_DEVICE_PATH_PROTOCOL_GUID, (void**)&DevicePath)) == EFI_SUCCESS)
 		{
 			if((SystemTable->BootServices->HandleProtocol(LoadedImage->DeviceHandle, &EFI_SIMPLE_FILE_SYSTEM_PROTOCOL_GUID, (void**)&Volume)) == EFI_SUCCESS)
@@ -187,8 +201,11 @@ void readFile(CHAR16* FileName)
 	// We get the file size, allocate memory for it,
     // read the file into the buffer, then we close the file.
     EFI_FILE_PROTOCOL* FileHandle = getFile(FileName);
+	Print(L"Function readFile Started\r\n");
     if(FileHandle != NULL)
     {
+		Print(L"Filehandle not null\r\n");
+
 		UINT64* FileSize = 0;
 		FileHandle->SetPosition(FileHandle, 0xFFFFFFFFFFFFFFFFULL);
 		FileHandle->GetPosition(FileHandle, FileSize);

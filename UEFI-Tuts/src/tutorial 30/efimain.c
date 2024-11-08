@@ -323,7 +323,7 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
 	
     KernelBinFile(&bi);
     
-    while(1){__asm__ ("hlt");}
+    //while(1){__asm__ ("hlt");}
 	
     // We should not make it to this point.
     return EFI_SUCCESS;

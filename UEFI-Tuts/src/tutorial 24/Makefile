@@ -1,6 +1,6 @@
 # Makefile
 CC        :=gcc
-CFLAGS    :=-Wall -Werror -m64 -mabi=ms
+CFLAGS    :=-Wall -Werror -m64 -mabi=ms -g -save-temps
 UNAME_S   :=$(shell uname -s)
 
 ifeq ($(UNAME_S),Darwin)
