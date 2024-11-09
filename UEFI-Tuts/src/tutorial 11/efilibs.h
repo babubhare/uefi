@@ -164,6 +164,8 @@ void InitializeFILESYSTEM()
     Print(L"LoadedImage ... ");
     EFI_LOADED_IMAGE_PROTOCOL *LoadedImage;
     Status = SystemTable->BootServices->HandleProtocol(ImageHandle, &EFI_LOADED_IMAGE_PROTOCOL_GUID, (void**)&LoadedImage);
+
+    
     SetColor(EFI_CYAN);
     Print(CheckStandardEFIError(Status));
     
