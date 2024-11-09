@@ -30,7 +30,7 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
 	SetFontSpacing(2);
 	SetFontSize(7);
 	
-	printf("Jumping to the loader.");
+	printf("Jumping to the loader9.");
 	
 	UINT8* loader = (UINT8*)OSBuffer_Handle;
 	

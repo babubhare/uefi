@@ -272,7 +272,7 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
 	UINT8* loader = (UINT8*)OSBuffer_Handle;
 	
 	SetColor(EFI_WHITE);
-    Print(L"LOADER FILE SIZE : ");
+    Print(L"LOADER FILE SIZE1 : ");
     itoa(*(unsigned long int*)&bi.LoaderFileSize, GOPINFO, DECIMAL);
     SetColor(EFI_YELLOW);
     Print(GOPINFO);
@@ -323,7 +323,7 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
 	
     KernelBinFile(&bi);
     
-    //while(1){__asm__ ("hlt");}
+    while(1){__asm__ ("hlt");}
 	
     // We should not make it to this point.
     return EFI_SUCCESS;

@@ -1,9 +1,8 @@
 // UEFI From Scratch - ThatOSDev ( 2021 - 2022 )
 // https://codeberg.org/ThatOSDev/UEFI-Tuts
 
-//#include "stdint.h"
-#include "../efi.h"
-#include "../efilibs.h"
+#include "stdint.h"
+
              // ARGB             
 #define ORANGE 0xffffa500
 #define CYAN   0xff00ffff
@@ -23,16 +22,16 @@ typedef struct GRAPHICS_COLOR_PIXEL
 } GRAPHICS_COLOR_PIXEL;
 
 // From the UEFI PDF Page 170
-/*typedef struct EFI_MEMORY_DESCRIPTOR
+typedef struct EFI_MEMORY_DESCRIPTOR
 {
     uint32_t  type;
     uint64_t* PhysicalAddress;
     uint64_t* VirtualAddress;
     uint64_t  NumberOfPages;
     uint64_t  Attributes;
-} EFI_MEMORY_DESCRIPTOR;*/
+} EFI_MEMORY_DESCRIPTOR;
 
-/*typedef struct BLOCKINFO
+typedef struct BLOCKINFO
 {
     uint64_t               BaseAddress;
     uint64_t               BufferSize;
@@ -44,7 +43,7 @@ typedef struct GRAPHICS_COLOR_PIXEL
     uint64_t               MMapSize;
     uint64_t               MMapDescriptorSize;
     uint64_t*              rsdp;
-} __attribute__((__packed__)) BLOCKINFO;*/
+} __attribute__((__packed__)) BLOCKINFO;
 
 BLOCKINFO* biStruct __attribute__ ((section (".text")));
 
@@ -54,7 +53,6 @@ void main(BLOCKINFO* bi)
 {
 	biStruct = bi;
 	biStruct->BaseAddress = bi->BaseAddress; // - 128);   // Somehow this fixes it.
-	Print(L"MAIN FUNCTION CALLED\r\n");
 	CreateBufferFilledBox(0, 0, 150, 150, ORANGE);
 	
 	while(1){__asm__ ("hlt");}
